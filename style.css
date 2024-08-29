@@ -2,23 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
 
 :root {
-    --primary-bg: linear-gradient(135deg, #2b1b3a, #3b2d5c); /* Modern dark purple gradient */
-    --primary-color: #D3CCE3; /* Softer contrasting color for text */
-    --accent-color: #BA68C8; /* Complementary color for buttons and main accents */
-    --hover-bg: #A46BBC; /* Slightly lighter purple for hover effects */
-    --highlight-color: #FFD700; /* Gold for highlighting */
-    --error-color: #FF6347; /* Tomato red for errors */
-    --bg1: #3a2a5e; /* Dark grey-purple for elements */
-    --bg2: #BA68C8; /* Softer purple for headers */
-    --text: #D3CCE3; /* Light gray for general text */
-    --status-offline: #888; /* Gray for offline */
-    --status-online: #7FFF00; /* Lime green for online */
-    --status-afk: #FFD700; /* Gold for AFK */
-    --max-width: 1600px;
-    --padding: 20px;
-    --border-radius: 8px; /* Subtle border-radius */
+    --primary-bg: linear-gradient(135deg, #2C2F33, #393D42); /* Discord grey gradient background */
+    --primary-color: #EDEDED; /* Light grey for text */
+    --accent-color: #B79AD8; /* Pastel purple for accents */
+    --hover-bg: #4B4B4B; /* Slightly darker grey for hover effects */
+    --highlight-color: #D1C4E9; /* Lighter pastel purple for highlights */
+    --error-color: #EF9A9A; /* Soft red for errors */
+    --bg1: #393D42; /* Dark grey for elements */
+    --bg2: #2C2F33; /* Discord grey for headers */
+    --text: #EDEDED; /* Light grey for general text */
+    --status-offline: #888888; /* Grey for offline */
+    --status-online: #A4E5D9; /* Pastel mint for online */
+    --status-afk: #FFD54F; /* Pastel yellow for AFK */
+    --max-width: 1400px; /* Standard max width */
+    --padding: 24px; /* Standard padding */
+    --border-radius: 12px; /* Modern rounded corners */
     --header-height: 60px;
-    --background-animation-duration: 10s; /* Duration for background gradient transition */
+    --background-animation-duration: 12s; /* Smooth background transition */
 }
 
 * {
@@ -30,27 +30,13 @@
 body, html {
     width: 100%;
     height: 100%;
-    font-family: 'Ubuntu', sans-serif; /* Ubuntu font for modern typography */
-    background: var(--primary-bg); /* Smooth, modern gradient background */
-    background-size: 200% 200%; /* Double size to enable smooth transition */
-    animation: gradient-animation var(--background-animation-duration) ease infinite;
+    font-family: 'Ubuntu', sans-serif; /* Modern sans-serif font */
+    background: var(--primary-bg); /* Unified gradient background */
     color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 20px;
-}
-
-@keyframes gradient-animation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    padding-top: var(--padding);
 }
 
 main {
@@ -59,7 +45,7 @@ main {
     padding: var(--padding);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px; /* Spacing between elements */
 }
 
 header {
@@ -67,36 +53,31 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--bg1); /* Thin line for subtle separation */
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease;
-}
-
-header:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+    box-shadow: none; /* Removed separate shadow for header */
 }
 
 h1 {
-    font-size: 2.5em; /* Slightly larger for emphasis */
+    font-size: 2.2em; /* Slightly large for emphasis */
     margin: 0;
-    color: var(--accent-color); /* Purple accent for the header */
-    font-weight: bold;
-    background: none; /* Remove background from the header text */
+    color: var(--accent-color); /* Pastel purple for header */
+    font-weight: 700; /* Bold font weight */
+    letter-spacing: 1px; /* Slight spacing */
 }
 
 .webmap-link {
-    font-size: 1.2em;
-    color: var(--accent-color); /* Softer purple for link text */
+    font-size: 1.1em;
+    color: var(--accent-color); /* Pastel purple for links */
     text-decoration: none;
     transition: color 0.3s ease, text-decoration 0.3s ease;
-    margin-top: 5px;
+    margin-top: 8px;
 }
 
 .webmap-link:hover {
-    color: var(--highlight-color); /* Gold for hover */
-    text-decoration: none; /* Remove underline on hover */
+    color: var(--highlight-color); /* Lighter pastel purple on hover */
+    text-decoration: underline; /* Underline for clarity */
 }
 
 .webstats-options-container {
@@ -104,24 +85,23 @@ h1 {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-bottom: 10px;
-    position: relative; /* Enable positioning of child elements */
+    margin-bottom: 16px;
+    position: relative;
 }
 
 .webstats-options {
     display: flex;
     align-items: center;
     gap: 20px;
-    background-color: var(--bg1); /* Dark grey-purple for options container */
-    padding: 10px 15px;
+    background-color: var(--bg1); /* Dark grey for options */
+    padding: 12px 18px;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    flex-grow: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .webstats-options:hover {
-    background-color: var(--hover-bg); /* Lighter purple on hover */
+    background-color: var(--hover-bg); /* Slightly darker grey on hover */
     transform: translateY(-2px); /* Slight lift on hover */
 }
 
@@ -129,16 +109,16 @@ label {
     cursor: pointer;
     font-size: 1.1em;
     transition: color 0.3s ease;
-    color: var(--primary-color); /* Contrasting text color */
+    color: var(--primary-color); /* Light grey text */
 }
 
 label:hover {
-    color: var(--highlight-color); /* Gold for hover */
+    color: var(--highlight-color); /* Lighter pastel purple on hover */
 }
 
 .webstats-status {
     font-size: 1em;
-    color: var(--error-color);
+    color: var(--error-color); /* Soft red for errors */
     text-align: right;
     flex-grow: 1;
     margin-left: 20px;
@@ -147,7 +127,7 @@ label:hover {
 #webstats-tables {
     width: 100%;
     padding: 0;
-    background-color: transparent; /* Blend with main background */
+    background-color: transparent; /* Transparent to blend with main background */
     border-radius: 0;
     box-shadow: none;
     overflow-y: auto;
@@ -155,33 +135,34 @@ label:hover {
 
 /* Compact Styles Applied by Default */
 td:not(.empty) {
-    height: 32px;
-    padding: 0px 10px;
-    background: var(--bg1); /* Dark grey-purple for table cells */
+    height: 40px; /* Standard height for table cells */
+    padding: 10px 12px; /* Consistent padding */
+    background: var(--bg1); /* Dark grey for table cells */
     text-align: right;
     white-space: nowrap;
     transition: background-color 0.3s ease, padding 0.2s;
-    color: var(--text);
-    border-radius: var(--border-radius); /* Rounded corners for table cells */
+    color: var(--text); /* Light grey text */
+    border-radius: var(--border-radius); /* Rounded corners */
 }
 
 td:not(.empty):hover {
-    background-color: var(--hover-bg); /* Lighter pastel purple on row hover */
+    background-color: var(--hover-bg); /* Slightly darker grey on hover */
 }
 
 td:not(.empty)[data-objective=Player] {
     text-align: left;
-    padding-left: 32px;
+    padding-left: 40px; /* Proper alignment */
 }
 
 td:not(.empty)[data-objective=Player][title="#server"] {
-    padding-left: 10px;
+    padding-left: 16px; /* Adjusted padding */
 }
 
 td.skin img {
-    width: 32px;
+    width: 40px; /* Standard size for images */
     height: 100%;
     transition: width 0.2s;
+    border-radius: 50%; /* Circular images for modern look */
 }
 
 .sticky {
@@ -191,35 +172,35 @@ td.skin img {
 }
 
 th {
-    padding: 5px 10px;
-    background: var(--bg2); /* Lighter pastel purple for table headers */
+    padding: 10px 12px; /* Consistent padding */
+    background: var(--bg2); /* Discord grey for headers */
     cursor: pointer;
-    color: var(--text);
-    transition: background-color 0.3s ease, padding 0.2s;
-    border-radius: var(--border-radius); /* Rounded corners for table headers */
+    color: var(--text); /* Light grey text */
+    transition: background-color 0.3s ease, padding 0.2s, transform 0.2s ease;
+    border-radius: var(--border-radius); /* Rounded corners */
     position: relative; /* For arrow positioning */
 }
 
 th:hover {
-    background-color: var(--hover-bg); /* Slightly darker purple on hover */
+    background-color: var(--hover-bg); /* Slightly darker grey on hover */
     transform: translateY(-2px); /* Slight lift on hover */
 }
 
 th::after {
-    content: ''; /* Default no content */
+    content: ''; /* No content by default */
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
     border: 6px solid transparent;
-    border-top-color: var(--text); /* Down arrow color */
-    opacity: 0; /* Initially hidden */
+    border-top-color: var(--text); /* Light grey arrow */
+    opacity: 0; /* Hidden by default */
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 th.sorted-asc::after {
     opacity: 1;
-    transform: translateY(-50%) rotate(180deg); /* Rotate for up arrow */
+    transform: translateY(-50%) rotate(180deg); /* Up arrow */
 }
 
 th.sorted-desc::after {
@@ -233,17 +214,17 @@ th.sorted-desc::after {
     left: 11px;
     width: 10px;
     height: 10px;
-    border-radius: 10px;
-    background: var(--status-offline);
+    border-radius: 50%; /* Circular status indicators */
+    background: var(--status-offline); /* Muted grey for offline */
     transition: top 0.2s, left 0.2s;
 }
 
 .status.online {
-    background: var(--status-online);
+    background: var(--status-online); /* Pastel mint for online */
 }
 
 .status.afk {
-    background: var(--status-afk);
+    background: var(--status-afk); /* Pastel yellow for AFK */
 }
 
 html.hide-offline tr.offline {
@@ -263,14 +244,14 @@ td[title="#server"] .status {
 .page-selector select {
     padding: 5px 10px;
     border-radius: var(--border-radius);
-    background-color: var(--bg1);
-    color: var(--text);
+    background-color: var(--bg1); /* Dark grey background */
+    color: var(--text); /* Light grey text */
     border: none;
     transition: background-color 0.3s ease;
 }
 
 .page-selector select:hover {
-    background-color: var(--hover-bg);
+    background-color: var(--hover-bg); /* Slightly darker grey on hover */
 }
 
 /* Responsive Design */
@@ -281,7 +262,7 @@ td[title="#server"] .status {
     }
 
     h1 {
-        font-size: 1.5em;
+        font-size: 1.8em; /* Adjusted for smaller screens */
         margin-bottom: 10px;
     }
 
