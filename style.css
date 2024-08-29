@@ -1,0 +1,310 @@
+/* GENERIC ELEMENTS */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+:root {
+    --primary-bg: linear-gradient(135deg, #2b1b3a, #3b2d5c); /* Modern dark purple gradient */
+    --primary-color: #D3CCE3; /* Softer contrasting color for text */
+    --accent-color: #BA68C8; /* Complementary color for buttons and main accents */
+    --hover-bg: #A46BBC; /* Slightly lighter purple for hover effects */
+    --highlight-color: #FFD700; /* Gold for highlighting */
+    --error-color: #FF6347; /* Tomato red for errors */
+    --bg1: #3a2a5e; /* Dark grey-purple for elements */
+    --bg2: #BA68C8; /* Softer purple for headers */
+    --text: #D3CCE3; /* Light gray for general text */
+    --status-offline: #888; /* Gray for offline */
+    --status-online: #7FFF00; /* Lime green for online */
+    --status-afk: #FFD700; /* Gold for AFK */
+    --max-width: 1600px;
+    --padding: 20px;
+    --border-radius: 8px; /* Subtle border-radius */
+    --header-height: 60px;
+    --background-animation-duration: 10s; /* Duration for background gradient transition */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: 'Ubuntu', sans-serif; /* Ubuntu font for modern typography */
+    background: var(--primary-bg); /* Smooth, modern gradient background */
+    background-size: 200% 200%; /* Double size to enable smooth transition */
+    animation: gradient-animation var(--background-animation-duration) ease infinite;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+main {
+    width: 100%;
+    max-width: var(--max-width);
+    padding: var(--padding);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--bg1); /* Thin line for subtle separation */
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+header:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+h1 {
+    font-size: 2.5em; /* Slightly larger for emphasis */
+    margin: 0;
+    color: var(--accent-color); /* Purple accent for the header */
+    font-weight: bold;
+    background: none; /* Remove background from the header text */
+}
+
+.webmap-link {
+    font-size: 1.2em;
+    color: var(--accent-color); /* Softer purple for link text */
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    margin-top: 5px;
+}
+
+.webmap-link:hover {
+    color: var(--highlight-color); /* Gold for hover */
+    text-decoration: none; /* Remove underline on hover */
+}
+
+.webstats-options-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative; /* Enable positioning of child elements */
+}
+
+.webstats-options {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--bg1); /* Dark grey-purple for options container */
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    flex-grow: 0;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.webstats-options:hover {
+    background-color: var(--hover-bg); /* Lighter purple on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+label {
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+    color: var(--primary-color); /* Contrasting text color */
+}
+
+label:hover {
+    color: var(--highlight-color); /* Gold for hover */
+}
+
+.webstats-status {
+    font-size: 1em;
+    color: var(--error-color);
+    text-align: right;
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+#webstats-tables {
+    width: 100%;
+    padding: 0;
+    background-color: transparent; /* Blend with main background */
+    border-radius: 0;
+    box-shadow: none;
+    overflow-y: auto;
+}
+
+/* Compact Styles Applied by Default */
+td:not(.empty) {
+    height: 32px;
+    padding: 0px 10px;
+    background: var(--bg1); /* Dark grey-purple for table cells */
+    text-align: right;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, padding 0.2s;
+    color: var(--text);
+    border-radius: var(--border-radius); /* Rounded corners for table cells */
+}
+
+td:not(.empty):hover {
+    background-color: var(--hover-bg); /* Lighter pastel purple on row hover */
+}
+
+td:not(.empty)[data-objective=Player] {
+    text-align: left;
+    padding-left: 32px;
+}
+
+td:not(.empty)[data-objective=Player][title="#server"] {
+    padding-left: 10px;
+}
+
+td.skin img {
+    width: 32px;
+    height: 100%;
+    transition: width 0.2s;
+}
+
+.sticky {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    left: 0;
+}
+
+th {
+    padding: 5px 10px;
+    background: var(--bg2); /* Lighter pastel purple for table headers */
+    cursor: pointer;
+    color: var(--text);
+    transition: background-color 0.3s ease, padding 0.2s;
+    border-radius: var(--border-radius); /* Rounded corners for table headers */
+    position: relative; /* For arrow positioning */
+}
+
+th:hover {
+    background-color: var(--hover-bg); /* Slightly darker purple on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+th::after {
+    content: ''; /* Default no content */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--text); /* Down arrow color */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+th.sorted-asc::after {
+    opacity: 1;
+    transform: translateY(-50%) rotate(180deg); /* Rotate for up arrow */
+}
+
+th.sorted-desc::after {
+    opacity: 1;
+    transform: translateY(-50%); /* Down arrow */
+}
+
+.status {
+    position: absolute;
+    top: calc(50% - 5px);
+    left: 11px;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: var(--status-offline);
+    transition: top 0.2s, left 0.2s;
+}
+
+.status.online {
+    background: var(--status-online);
+}
+
+.status.afk {
+    background: var(--status-afk);
+}
+
+html.hide-offline tr.offline {
+    display: none;
+}
+
+td[title="#server"] .status {
+    display: none;
+}
+
+/* Page Selector Styling */
+.page-selector {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.page-selector select {
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    background-color: var(--bg1);
+    color: var(--text);
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.page-selector select:hover {
+    background-color: var(--hover-bg);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 700px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .webmap-link {
+        font-size: 1em;
+    }
+
+    .webstats-options-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .webstats-status {
+        margin-left: 0;
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    #webstats-tables {
+        padding: 15px;
+    }
+
+    .page-selector {
+        text-align: center;
+    }
+}

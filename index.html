@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Gold Grove Stats</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png">
+
+    <script type="module">
+        import WebStats from "./WebStats-dist.js";
+
+        const getCookie = (cookie) => document.cookie.match(`${cookie}=([^;]+)`)?.[1];
+
+        const title = getCookie("title");
+        if (title) document.title = title;
+
+        window.addEventListener("load", () => {
+            const stats = new WebStats({
+                host: location.protocol + "//" + location.host,
+                tableParent: document.getElementById("webstats-tables"),
+                updateInterval: 10_000,
+                showSkins: true,
+                displayCount: 100,
+            });
+        });
+    </script>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Gold Grove Stats</h1>
+            <a href="https://map.goldgrove.org" class="webmap-link" target="_blank">View Webmap</a>
+        </header>
+        <div class="webstats-options-container">
+            <div class="webstats-options">
+                <span>
+                    <!-- toggle hiding offline players (optional) -->
+                    <input type="checkbox" name="hide-offline" id="hide-offline" class="webstats-option">
+                    <label for="hide-offline">Hide offline players</label>
+                </span>
+            </div>
+            <span class="webstats-status">
+                <!-- show loading status and any error messages (optional) -->
+                <span class="webstats-loading-indicator">Loading...</span>
+                <span class="webstats-error-message"></span>
+            </span>
+        </div>
+
+        <!-- the table which will be populated by WebStats (required) -->
+        <div id="webstats-tables"></div>
+    </main>
+</body>
+</html>
