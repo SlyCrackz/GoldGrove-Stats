@@ -24,6 +24,20 @@
                 showSkins: true,
                 displayCount: 100,
             });
+
+            // Hide offline players toggle
+            const hideOfflineCheckbox = document.getElementById("hide-offline");
+            hideOfflineCheckbox.addEventListener("change", () => {
+                document.documentElement.classList.toggle("hide-offline", hideOfflineCheckbox.checked);
+            });
+
+            // Compact mode toggle (optional)
+            const compactModeCheckbox = document.getElementById("compact-mode");
+            if (compactModeCheckbox) {
+                compactModeCheckbox.addEventListener("change", () => {
+                    document.documentElement.classList.toggle("compact", compactModeCheckbox.checked);
+                });
+            }
         });
     </script>
 </head>
@@ -36,19 +50,20 @@
         <div class="webstats-options-container">
             <div class="webstats-options">
                 <span>
-                    <!-- toggle hiding offline players (optional) -->
                     <input type="checkbox" name="hide-offline" id="hide-offline" class="webstats-option">
                     <label for="hide-offline">Hide offline players</label>
                 </span>
+                <span>
+                    <input type="checkbox" name="compact-mode" id="compact-mode" class="webstats-option">
+                    <label for="compact-mode">Compact mode</label>
+                </span>
             </div>
             <span class="webstats-status">
-                <!-- show loading status and any error messages (optional) -->
                 <span class="webstats-loading-indicator">Loading...</span>
                 <span class="webstats-error-message"></span>
             </span>
         </div>
 
-        <!-- the table which will be populated by WebStats (required) -->
         <div id="webstats-tables"></div>
     </main>
 </body>
