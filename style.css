@@ -1,24 +1,25 @@
-/* GENERIC ELEMENTS */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
 
 :root {
-    --primary-bg: linear-gradient(135deg, #2C2F33, #393D42); /* Discord grey gradient background */
-    --primary-color: #EDEDED; /* Light grey for text */
-    --accent-color: #B79AD8; /* Pastel purple for accents */
-    --hover-bg: #4B4B4B; /* Slightly darker grey for hover effects */
-    --highlight-color: #D1C4E9; /* Lighter pastel purple for highlights */
-    --error-color: #EF9A9A; /* Soft red for errors */
-    --bg1: #393D42; /* Dark grey for elements */
-    --bg2: #2C2F33; /* Discord grey for headers */
-    --text: #EDEDED; /* Light grey for general text */
-    --status-offline: #888888; /* Grey for offline */
-    --status-online: #A4E5D9; /* Pastel mint for online */
-    --status-afk: #FFD54F; /* Pastel yellow for AFK */
-    --max-width: 1400px; /* Standard max width */
-    --padding: 24px; /* Standard padding */
-    --border-radius: 12px; /* Modern rounded corners */
+    --primary-bg: linear-gradient(135deg, #2C2F33, #393D42);
+    --primary-color: #EDEDED;
+    --accent-color: #B79AD8;
+    --hover-bg: #4B4B4B;
+    --highlight-color: #D1C4E9;
+    --error-color: #EF9A9A;
+    --bg1: #393D42;
+    --bg2: #2C2F33;
+    --text: #EDEDED;
+    --status-offline: #888888;
+    --status-online: #A4E5D9;
+    --status-afk: #FFD54F;
+    --max-width: 1400px;
+    --padding: 24px;
+    --border-radius: 12px;
     --header-height: 60px;
-    --background-animation-duration: 12s; /* Smooth background transition */
+    --background-animation-duration: 12s;
+    --table-row-hover: rgba(255, 255, 255, 0.05);
+    --glow-effect: 0 0 10px rgba(183, 154, 216, 0.6);
 }
 
 * {
@@ -30,13 +31,15 @@
 body, html {
     width: 100%;
     height: 100%;
-    font-family: 'Ubuntu', sans-serif; /* Modern sans-serif font */
-    background: var(--primary-bg); /* Unified gradient background */
+    font-family: 'Ubuntu', sans-serif;
+    background: var(--primary-bg);
     color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding-top: var(--padding);
+    background-size: 400% 400%;
+    animation: gradientAnimation var(--background-animation-duration) ease infinite;
 }
 
 main {
@@ -45,7 +48,7 @@ main {
     padding: var(--padding);
     display: flex;
     flex-direction: column;
-    gap: 24px; /* Spacing between elements */
+    gap: 24px;
 }
 
 header {
@@ -55,29 +58,33 @@ header {
     width: 100%;
     padding-bottom: 16px;
     margin-bottom: 24px;
-    transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transition */
-    box-shadow: none; /* Removed separate shadow for header */
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    transition: background-color 0.3s ease;
 }
 
 h1 {
-    font-size: 2.2em; /* Slightly large for emphasis */
+    font-size: 2.2em;
     margin: 0;
-    color: var(--accent-color); /* Pastel purple for header */
-    font-weight: 700; /* Bold font weight */
-    letter-spacing: 1px; /* Slight spacing */
+    color: var(--accent-color);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: none;
 }
 
 .webmap-link {
     font-size: 1.1em;
-    color: var(--accent-color); /* Pastel purple for links */
+    color: var(--accent-color);
     text-decoration: none;
-    transition: color 0.3s ease, text-decoration 0.3s ease;
+    transition: color 0.3s ease, text-decoration 0.3s ease, transform 0.2s ease;
     margin-top: 8px;
 }
 
 .webmap-link:hover {
-    color: var(--highlight-color); /* Lighter pastel purple on hover */
-    text-decoration: underline; /* Underline for clarity */
+    color: var(--highlight-color);
+    text-decoration: underline;
+    transform: scale(1.05);
 }
 
 .webstats-options-container {
@@ -93,32 +100,28 @@ h1 {
     display: flex;
     align-items: center;
     gap: 20px;
-    background-color: var(--bg1); /* Dark grey for options */
+    background-color: var(--bg1);
     padding: 12px 18px;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s ease, transform 0.2s;
-}
-
-.webstats-options:hover {
-    background-color: var(--hover-bg); /* Slightly darker grey on hover */
-    transform: translateY(-2px); /* Slight lift on hover */
+    transition: background-color 0.3s ease;
 }
 
 label {
     cursor: pointer;
     font-size: 1.1em;
     transition: color 0.3s ease;
-    color: var(--primary-color); /* Light grey text */
+    color: var(--primary-color);
+    position: relative;
+    padding-left: 20px;
 }
 
-label:hover {
-    color: var(--highlight-color); /* Lighter pastel purple on hover */
+label:hover::before {
+    background-color: var(--highlight-color);
 }
 
 .webstats-status {
     font-size: 1em;
-    color: var(--error-color); /* Soft red for errors */
+    color: var(--error-color);
     text-align: right;
     flex-grow: 1;
     margin-left: 20px;
@@ -127,42 +130,56 @@ label:hover {
 #webstats-tables {
     width: 100%;
     padding: 0;
-    background-color: transparent; /* Transparent to blend with main background */
+    background-color: transparent;
     border-radius: 0;
     box-shadow: none;
     overflow-y: auto;
+    min-height: 500px;
+    padding-bottom: 16px;
 }
 
-/* Compact Styles Applied by Default */
 td:not(.empty) {
-    height: 40px; /* Standard height for table cells */
-    padding: 10px 12px; /* Consistent padding */
-    background: var(--bg1); /* Dark grey for table cells */
+    height: 40px;
+    min-height: 40px;
+    padding: 10px 12px;
+    background: var(--bg1);
     text-align: right;
     white-space: nowrap;
-    transition: background-color 0.3s ease, padding 0.2s;
-    color: var(--text); /* Light grey text */
-    border-radius: var(--border-radius); /* Rounded corners */
+    transition: background-color 0.3s ease, padding 0.2s, box-shadow 0.3s ease;
+    color: var(--text);
+    border-radius: var(--border-radius);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 td:not(.empty):hover {
-    background-color: var(--hover-bg); /* Slightly darker grey on hover */
+    background-color: var(--hover-bg);
+    box-shadow: 0 0 10px var(--accent-color);
+    cursor: pointer;
 }
 
 td:not(.empty)[data-objective=Player] {
-    text-align: left;
-    padding-left: 40px; /* Proper alignment */
+    vertical-align: middle;
+    padding-left: 56px;
 }
 
 td:not(.empty)[data-objective=Player][title="#server"] {
-    padding-left: 16px; /* Adjusted padding */
+    padding-left: 24px;
 }
 
 td.skin img {
-    width: 40px; /* Standard size for images */
-    height: 100%;
-    transition: width 0.2s;
-    border-radius: 50%; /* Circular images for modern look */
+    width: 48px;
+    height: 48px;
+    transition: width 0.2s, height 0.2s;
+    border-radius: 30%;
+    padding: 4px;
+    box-shadow: var(--glow-effect);
+    border: 2px solid var(--accent-color);
+}
+
+html.compact td.skin img {
+    width: 32px;
+    height: 32px;
 }
 
 .sticky {
@@ -172,40 +189,60 @@ td.skin img {
 }
 
 th {
-    padding: 10px 12px; /* Consistent padding */
-    background: var(--bg2); /* Discord grey for headers */
+    padding: 10px 12px;
+    background: var(--bg2);
     cursor: pointer;
-    color: var(--text); /* Light grey text */
-    transition: background-color 0.3s ease, padding 0.2s, transform 0.2s ease;
-    border-radius: var(--border-radius); /* Rounded corners */
-    position: relative; /* For arrow positioning */
+    color: var(--text);
+    transition: background-color 0.3s ease, padding 0.2s, transform 0.2s ease, box-shadow 0.3s ease;
+    border-radius: var(--border-radius);
+    position: relative;
 }
 
 th:hover {
-    background-color: var(--hover-bg); /* Slightly darker grey on hover */
-    transform: translateY(-2px); /* Slight lift on hover */
+    background-color: var(--hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px var(--accent-color);
 }
 
 th::after {
-    content: ''; /* No content by default */
+    content: '';
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
     border: 6px solid transparent;
-    border-top-color: var(--text); /* Light grey arrow */
-    opacity: 0; /* Hidden by default */
+    border-top-color: var(--text);
+    opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 th.sorted-asc::after {
     opacity: 1;
-    transform: translateY(-50%) rotate(180deg); /* Up arrow */
+    transform: translateY(-50%) rotate(180deg);
 }
 
 th.sorted-desc::after {
     opacity: 1;
-    transform: translateY(-50%); /* Down arrow */
+    transform: translateY(-50%);
+}
+
+input:focus, button:focus, .webmap-link:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--highlight-color);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg2);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    border: 2px solid var(--bg2);
 }
 
 .status {
@@ -214,28 +251,55 @@ th.sorted-desc::after {
     left: 11px;
     width: 10px;
     height: 10px;
-    border-radius: 50%; /* Circular status indicators */
-    background: var(--status-offline); /* Muted grey for offline */
+    border-radius: 50%;
+    background: var(--status-offline);
     transition: top 0.2s, left 0.2s;
 }
 
 .status.online {
-    background: var(--status-online); /* Pastel mint for online */
+    background: var(--status-online);
+    animation: pulse 2s infinite;
 }
 
 .status.afk {
-    background: var(--status-afk); /* Pastel yellow for AFK */
+    background: var(--status-afk);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
 }
 
 html.hide-offline tr.offline {
     display: none;
 }
 
+html.compact td:not(.empty) {
+    padding: 6px 8px;
+    height: 30px;
+    min-height: 30px;
+    padding-left: 48px;
+}
+
+html.compact th {
+    padding: 6px 8px;
+}
+
 td[title="#server"] .status {
     display: none;
 }
 
-/* Page Selector Styling */
 .page-selector {
     margin-top: 20px;
     text-align: right;
@@ -244,17 +308,58 @@ td[title="#server"] .status {
 .page-selector select {
     padding: 5px 10px;
     border-radius: var(--border-radius);
-    background-color: var(--bg1); /* Dark grey background */
-    color: var(--text); /* Light grey text */
+    background-color: var(--bg1);
+    color: var(--text);
     border: none;
     transition: background-color 0.3s ease;
 }
 
 .page-selector select:hover {
-    background-color: var(--hover-bg); /* Slightly darker grey on hover */
+    background-color: var(--hover-bg);
 }
 
-/* Responsive Design */
+button, .webmap-link {
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+button:hover, .webmap-link:hover {
+    transform: scale(1.05);
+}
+
+button:active, .webmap-link:active {
+    transform: scale(0.95);
+}
+
+.webmap-link[data-tooltip]::after, button[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    opacity: 0;
+    background-color: var(--bg1);
+    color: var(--text);
+    padding: 5px 10px;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+    transform: translateY(10px);
+}
+
+.webmap-link:hover::after, button:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden-element {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hidden-element.active {
+    opacity: 1;
+    visibility: visible;
+}
+
 @media screen and (max-width: 700px) {
     header {
         flex-direction: column;
@@ -262,7 +367,7 @@ td[title="#server"] .status {
     }
 
     h1 {
-        font-size: 1.8em; /* Adjusted for smaller screens */
+        font-size: 1.8em;
         margin-bottom: 10px;
     }
 
@@ -288,4 +393,10 @@ td[title="#server"] .status {
     .page-selector {
         text-align: center;
     }
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
